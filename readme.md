@@ -17,7 +17,7 @@
 
 ### ตัวอย่างสามารถดูได้ที่
 
-* [Chinamap at Porrapat.com](http://chinamap-html.porrapat.com)
+* [Chinamap at Porrapat.com](http://chinamap.porrapat.com)
 * [Chinamap at Ideavivat Demo](https://chinamap.ideavivat-demo.com)
 * [Implement จริงเป็นส่วนหนึ่งของ Wordpress ที่ Thaibizchina.com](https://thaibizchina.com)
 
