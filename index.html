@@ -1,32 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-  <title>China Map</title>
-  <meta charset="utf-8">
+    <title>ตัวอย่าง Element แผนที่ประเทศจีนจาก thaibizchina.com</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch" rel="stylesheet">
+    <style>
+        /*
+        * Extra utilities
+        */
+        @media (min-width: 768px) {
+            .flex-md-equal > * {
+                -ms-flex: 1;
+                -webkit-box-flex: 1;
+                flex: 1;
+            }
+        }
+        .overflow-hidden { overflow: hidden; }
+    </style>
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
-    <main>
-    <section id="headings">
-        <h3><a href="#headings">#</a> Headings </h3>
-        <p>Elements <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>,
-            <code>h5</code>, <code>h6</code> make up the <em>heading content</em> category.
-        </p>
-        <hgroup>
-            <h1>h1 I am most important.</h1>
-            <h2>h2 Back in my quaint <a href='#'>garden</a></h2>
-            <h3>h3 Jaunty <a href='#'>zinnias</a> vie with flaunting phlox.</h3>
-            <h4>h4 Five or six big jet planes zoomed quickly by the new tower.</h4>
-            <h5>h5 Expect skilled signwriters to use many jazzy, quaint old alphabets effectively.</h5>
-            <h6>h6 Pack my box with five dozen liquor jugs.</h6>
-        </hgroup>
-        <footer>
-            <p>See the <a target="_blank" href="https://www.w3.org/TR/html5/dom.html#heading-content">Heading Content spec.</a></p>
-            <p>Note: these two paragraphs are contained in a <code>footer</code> element.
-            </p>
-        </footer>
-    </section>
+    <!-- Start Heading -->
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-white text-center bg-dark">
+        <div class="col-md-12 p-lg-12 mx-auto">
+            <h1 class="display-5 font-weight-normal">ตัวอย่าง Code แผนที่ประเทศจีน แบบ Interactive</h1>
+            <p class="lead font-weight-normal">เทคโนโลยีที่ใช้ HTML, CSS, Javascript (Jquery), รูปภาพและข้อมูลจากทีมงาน</p>
+            <a class="btn btn-outline-secondary" href="https://thaibizchina.com" target="_blank">ตัวอย่างใช้จริง : ศูนย์ข้อมูลเพื่อธุรกิจไทยในจีน </a>
+            <a class="btn btn-outline-secondary" href="https://github.com/Porrapat/chinamap-html" target="_blank">Source Code : Github</a>
+            <a class="btn btn-outline-secondary" href="https://www.ideavivat.com" target="_blank">By Ideavivat Team</a>
+        </div>
+    </div>
+    <!-- End Heading -->
 
+    <!-- Start Portfolio Layout -->
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+        <div class="bg-dark mr-md-3 pt-3 pt-md-3 text-center text-white overflow-hidden">
+            <div class="my-3 py-3">
+                <h2 class="display-5">แผนที่ศูนย์ธุรกิจ</h2>
+                <p class="lead">เมื่อ Hover แต่ละหมุดบนแผนที่จะแสดง Popup</p>
+                <p class="lead"><a href="map1.html" target="_blank">คลิกเพื่อดูตัวอย่าง</a></p>
+            </div>
+            <div class="w-100" style="height: 400px;">
+                <a href="map1.html" target="_blank"><img src="images/example-map-01-business.png" class="img-fluid" alt="ภาพตัวอย่างแผนที่ศูนย์ธุรกิจ" style="min-height: 400px;" /></a>
+            </div>
+        </div>
+        <div class="bg-light mr-md-3 pt-3 pt-md-3 text-center overflow-hidden">
+            <div class="my-3 p-3">
+                <h2 class="display-5">แผนที่รายมณฑล</h2>
+                <p class="lead">เมื่อ Click แต่ละมณฑลจะแสดงข้อมูลรายละเอียดเพิ่มเติม</p>
+                <p class="lead"><a href="map2.html" target="_blank">คลิกเพื่อดูตัวอย่าง</a></p>
+            </div>
+            <div class="w-100" style="height: 400px;">
+                <a href="map2.html" target="_blank"><img src="images/example-map-02-province.png" class="img-fluid" alt="ภาพตัวอย่างแผนที่รายมณฑล" style="min-height: 400px;" /></a>
+            </div>
+        </div>
+    </div>
+    <!-- End Portfolio Layout -->
 </body>
 
 </html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>ตัวอย่าง Element แผนที่ประเทศจีนจาก thaibizchina.com</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch" rel="stylesheet">
+
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="js/pad.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            function setHeightOfMarkerContainer()
+            {
+                $("#marker-container").height($("#ideavivat-thaibiz-china-map-main-style img").height());
+            }
+
+            $(window).on('resize', function(){
+                setHeightOfMarkerContainer();
+            });
+            setHeightOfMarkerContainer();
+
+            for(var i = 1; i<= 10; i++)
+            {
+                var imageUrl = 'images/marker/icon_map10center_'+pad('00',i, true)+'.png';
+                $('#ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-'+i).css('background-image','url(' + imageUrl + ')');
+
+                $("#ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-" + i).hover(function() {
+
+                    var content = $(this).data('content');
+                    var index = content.slice(16);
+
+                    var imageHoverInUrl = 'images/marker/icon_RO_map10center_'+pad('00',index, true)+'.png';
+                    $('#ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-'+index).css('background-image','url(' + imageHoverInUrl + ')');
+
+                    var top = ($(this).position().top);
+                    var left = ($(this).position().left);
+
+                    $(content).css('top', top - 120);
+                    $(content).css('left', left + 150); 
+
+                    $(content).fadeIn();
+
+                }, function() {
+                    var content = $(this).data('content');
+                    var index = content.slice(16);
+                    
+                    var imageHoverOutUrl = 'images/marker/icon_map10center_'+pad('00',index, true)+'.png';
+                    $('#ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-'+index).css('background-image','url(' + imageHoverOutUrl + ')');
+
+                    $(content).fadeOut();
+                });
+
+                $('#ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-'+i).click(function() {
+                    return false;
+                });
+            }
+        });
+    </script>
+
+    <style>
+        #ideavivat-thaibiz-china-map-main-style {
+            width: 100%;
+        }
+        #ideavivat-thaibiz-china-map-main-style > img {
+            position: absolute;
+            width: 100%;
+            max-width: 100%;
+            background-color: #a3e5ff;
+        }
+        #ideavivat-thaibiz-china-map-main-style #block-china-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        #ideavivat-thaibiz-china-map-main-style #block-china-inside {
+            width: 360px;
+            position: absolute;
+            left: 0px;
+            top: 280px;
+            background-color: #0b0b35;
+            transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+            padding: 30px;
+        }
+        #ideavivat-thaibiz-china-map-main-style #block-china-inside > img{
+            width:100%;
+            margin-bottom:20px;
+        }
+        #ideavivat-thaibiz-china-map-main-style #block-china-inside ul li {
+            font-family: 'Chakra Petch', Sans-serif;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 24px;
+            color: #fff;
+        }
+        #ideavivat-thaibiz-china-map-main-style #block-china-inside ul li > a {
+            color: #fff;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content {
+            text-align:center;
+            background-color: #fff;
+            width:300px;
+            position: absolute;
+            left:300px;
+            top:50px;
+            z-index:15;
+            display: none;
+            font-family: 'Chakra Petch', Sans-serif;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > img {
+            width:100%;
+            margin-bottom:10px;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > h3 {
+            font-size:18px;
+            font-weight: bold;
+            font-family: 'Chakra Petch', Sans-serif;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > p {
+            padding:0 8px;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container {
+            position: relative;
+            height: 100%;
+            z-index: 5;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton {
+            position: absolute;
+            height:200px;
+            width:140px;
+            background-size: cover;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-1 {
+            left: 66.5%;
+            top: 31%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-2 {
+            left: 58%;
+            top: 78.2%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-3 {
+            left: 74%;
+            top: 56.5%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-4 {
+            left: 42%;
+            top: 72%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-5 {
+            left: 43.4%;
+            top: 58%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-6 {
+            left: 70%;
+            top: 68%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-7 {
+            left: 55.5%;
+            top: 45%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-8 {
+            left: 53%;
+            top: 75%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-9 {
+            left: 62.4%;
+            top: 77.5%;
+        }
+        #ideavivat-thaibiz-china-map-main-style #marker-container .marker-botton-10 {
+            left: 68.8%;
+            top: 42%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section id="ideavivat-thaibiz-china-map-main-style">
+        <img src="images/Map_City_Details.png" alt="Background China Map">
+        <div id="block-china-wrapper" class="container">
+            <div id="block-china-inside">
+                <img src="images/Left-10-Center@1x.png" alt="" />
+                <ul>
+                    <li><a href="http://www.thaiembbeij.org/thaiembbeij">สถานเอกอัครราชทูต ณ กรุงปักกิ่ง</a></li>
+                    <li><a href="http://www.thaiembassy.org/guangzhou">สถานกงสุลใหญ่ ณ นครกว่างโจว </a></li>
+                    <li><a href="http://www.thaishanghai.com/">สถานกงสุลใหญ่ ณ นครเซี่ยงไฮ้ </a></li>
+                    <li><a href="http://www.thaiembassy.org/kunming">สถานกงสุลใหญ่ ณ นครคุนหมิง</a></li>
+                    <li><a href="http://www.thaiembassy.org/chengdu">สถานกงสุลใหญ่ ณ นครเฉิงตู</a></li>
+                    <li><a href="http://www.thaiembassy.org/xiamen">สถานกงสุลใหญ่ ณ เมืองเซี่ยเหมิน</a></li>
+                    <li><a href="http://www.thaixian.com">สถานกงสุลใหญ่ ณ นครซีอาน</a></li>
+                    <li><a href="http://www.thaiembassy.org/nanning">สถานกงสุลใหญ่ ณ นครหนานหนิง</a></li>
+                    <li><a href="http://www.thai-consulate.org.hk">สถานกงสุลใหญ่ ณ เมืองฮ่องกง </a></li>
+                    <li><a href="http://www.thaiembassy.org/qingdao">สถานกงสุลใหญ่ ณ เมืองชิงต่าว</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- End #block-china-wrapper -->
+
+        <div id="marker-container">
+
+            <a class="marker-botton marker-botton-1" data-content=".marker-content-1" href="#"></a>
+
+            <div class="marker-dot-content marker-content-1">
+                <img src="images/04_Kunming.png" alt="" width="266" height="156">
+                <h3>สถานเอกอัครราชทูต ณ กรุงปักกิ่ง</h3>
+                <p>21 Guang Hua Road Chaoyang District, Beijing, 100600</p>
+                <p>Tel : (86-10) 8531-8728,<br>8531-8729, 8531-8730</p>
+                <p>Fax : (86-10) 8531-8714</p>
+                <p>E-mail : beijing@vhosts</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-2" data-content=".marker-content-2" href="#"></a>
+
+            <div class="marker-dot-content marker-content-2">
+                <img src="images/04_Kunming.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ นครกว่างโจว</h3>
+                <p>No. 36 Youhe Lu, Chigang consular area, Haizhu district, Guangzhou, Guangdong Province
+                    510310</p>
+                <p>Tel : (86-20) 8966-0636</p>
+                <p>Fax : (86-20) 8966-0639</p>
+                <p>E-mail : guangzhou@vhosts, tbicguangzhou@gmail.com</p>
+            </div>
+
+            <a class="marker-botton marker-botton-3" data-content=".marker-content-3" href="#"></a>
+
+            <div class="marker-dot-content marker-content-3">
+                <img src="images/04_Kunming.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ นครเซี่ยงไฮ้</h3>
+                <p>No.18 Wan Shan Road, Changning District, Shanghai 200336</p>
+                <p>Tel : (86-21) 52609899<br><br>Fax : (86-21) 52609898<br><br>E-mail :shanghai@vhosts,
+                    tbicshanghai@hotmail.com</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-4" data-content=".marker-content-4" href="#"></a>
+
+            <div class="marker-dot-content marker-content-4">
+                <img src="images/04_Kunming.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ นครคุนหมิง</h3>
+                <p>18th Floor Shuncheng Dongta 11 Dongfengxilu, Kunming, Yunnan 650051</p>
+                <p>Tel : (86-871) 6316-8916</p>
+                <p>Fax : (86-871) 6316-6891</p>
+                <p>E-mail : kunming@vhosts</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-5" data-content=".marker-content-5" href="#"></a>
+
+            <div class="marker-dot-content marker-content-5">
+                <img src="images/05_Chengdu.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ นครเฉิงตู</h3>
+                <p>12/F, Building C, Fund International Plaza, No.6, Hangkong Rd., Chengdu, Sichuan 610041</p>
+                <p>Tel : (86-28) 6689-7861 ต่อ 8035</p>
+                <p>Fax : (86-28) 6689-7863</p>
+                <p>E-mail : chengdu@vhosts, tbicchengdu@gmail.com</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-6" data-content=".marker-content-6" href="#"></a>
+
+            <div class="marker-dot-content marker-content-6">
+                <img src="images/06_Xiamen.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่</h3>
+                <p>ณ เมืองเซี่ยเหมิน</p>
+                <p>CONTACT US<br>Building No.3, City Hotel Xiamen,<br>No. 16 Hu Yuan Road,<br>Xiamen,
+                    Fujian<br>361003</p>
+                <p>Tel : (86-592) 202-1259<br>Fax : (86-592) 202-7981<br>E-mail :
+                    xiamen@vhosts, tbicxiamen@hotmail.com</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-7" data-content=".marker-content-7" href="#"></a>
+
+            <div class="marker-dot-content marker-content-7">
+                <img src="images/07_Xian.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ นครซีอาน</h3>
+                <p>No.11 Yannan 3 rd Dimond Peninsula, Qujiang new district, Xi’an, Shaanxi 700061</p>
+                <p>Tel : (86-29) 893-12831</p>
+                <p>Fax : (86-29) 893-12831</p>
+                <p>E-mail: xian@vhosts, thaibizchinaxian@gmail.com</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-8" data-content=".marker-content-8" href="#"></a>
+
+            <div class="marker-dot-content marker-content-8">
+                <img src="images/08_Nanning.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ นครหนานหนิง</h3>
+                <p>1st – 2nd Floor, 52-1 Jinhu Road, Orient Manhattan, Nanning, Guangxi 530022</p>
+                <p>Tel : (86-771) 5526945-47</p>
+                <p>Fax : (86-771) 5594997</p>
+                <p>E-mail : nanning@vhosts, nanning@hotmail.com</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-9" data-content=".marker-content-9" href="#"></a>
+
+            <div class="marker-dot-content marker-content-9">
+                <img src="images/09_HongKong.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ เมืองฮ่องกง</h3>
+                <p>Fairmont House, 8th Floor, 8 Cotton Tree Drive, Central, Hong Kong S.A.R.</p>
+                <p>Tel : (852) 2532-5119</p>
+                <p>Fax : (852) 2521-8629</p>
+                <p>E-mail : hongkong@vhosts, bizhk@thai-consulate.org.hk</p>
+            </div>
+
+
+            <a class="marker-botton marker-botton-10" data-content=".marker-content-10" href="#"></a>
+
+            <div class="marker-dot-content marker-content-10">
+                <img src="images/10_Qingdao.png" alt="" width="266" height="156">
+                <h3>สถานกงสุลใหญ่ ณ เมืองชิงต่าว</h3>
+                <p>Unit 1504-1505 Shangri-la Center Tower, No.9 Xiang Gang Zhong Road, Qingdao, Shandong 266071</p>
+                <p>Tel : (86-532) 6887 7038-39</p>
+                <p>Fax : (86-532) 6887 7036</p>
+                <p>E-mail : qingdao@vhosts, thaiqingdao@mfa.go.th</p>
+            </div>
+
+        </div>
+        <!-- End #marker-container -->
+
+    </section>
+
+</body>
+
+</html>

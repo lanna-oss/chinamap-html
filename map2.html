@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>ตัวอย่าง Element แผนที่ประเทศจีนจาก thaibizchina.com</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch" rel="stylesheet">
+
+    <style>
+        #ideavivat-thaibiz-china-map-main-style {
+            width: 100%;
+            height: 820px;
+            background-color: #eee;
+        }
+        #ideavivat-thaibiz-china-map-main-style > img {
+            position: absolute;
+            height:800px;
+            margin-left:500px;
+            background-color: #eee;
+            z-index: 1;
+            margin-bottom:20px;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content {
+            text-align:center;
+            background-color: #fff;
+            width:400px;
+            height:820px;
+            position: absolute;
+            left:0px;
+            top:0px;
+            z-index:15;
+            display: none;
+            font-family: 'Chakra Petch', Sans-serif;
+            overflow: hidden;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > div.stick-bar {
+            width:4px;
+            height:40px;
+            margin:0px auto;
+            margin-top:-30px;
+            background-color:#a57f4e;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > h1 {
+            margin-top:40px;
+            font-size:22px;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > h2 {
+            font-size:32px;
+            color: #a57f4e;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > img {
+            width:220px;
+            margin-top:30px;
+            margin-bottom:30px;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > ul > li {
+            width:320px;
+            list-style-type: none;
+            margin-left:100px;
+            padding: 0;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > ul > li > a {
+            display: inline-block;
+            width: 250px;
+            background-color: #d2d3d5;
+            color:#fff;
+            padding:4px;
+            padding-left:10px;
+            text-align: left;
+            margin-bottom:6px;
+            text-decoration: none;
+            margin-left:10px;
+            /* Skew */
+            -moz-transform: skew(-15deg, 0deg);
+            -webkit-transform: skew(-15deg, 0deg);
+            -o-transform: skew(-15deg, 0deg);
+            -ms-transform: skew(-15deg, 0deg);
+            transform: skew(-15deg, 0deg);
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > ul > li.active > a {
+            background-color: #a57f4e;
+            color:#fff;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > ul > li > span.front-number {
+            background-color: #fff;
+            color:#d2d3d5;
+            display:inline-block;
+            font-size:20px;
+            font-style: italic;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > ul > li.active > span.front-number {
+            color:#a57f4e;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-dot-content > p {
+            padding: 20px 40px 40px 40px;
+        }
+        #ideavivat-thaibiz-china-map-main-style .marker-botton {
+            position: absolute;
+            padding: 10px;
+            z-index: 20;
+            color:#336699;
+        }
+        /* Beijing */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-1 {
+            left: 1230px;
+            top: 320px;
+        }
+        /* Henan */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-2 {
+            left: 1170px;
+            top: 470px;
+        }
+        /* Heilongjiang */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-3 {
+            left: 1400px;
+            top: 170px;
+        }
+        /* Hubei */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-4 {
+            left: 1150px;
+            top: 520px;
+        }
+        /* Xinjiang */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-5 {
+            left: 700px;
+            top: 300px;
+        }
+        /* Hebei */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-6 {
+            left: 1210px;
+            top: 370px;
+        }
+        /* Qinghai */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-7 {
+            left: 880px;
+            top: 420px;
+        }
+        /* Liaoning */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-8 {
+            left: 1330px;
+            top: 300px;
+        }
+        /* InnerMongolia */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-9 {
+            left: 1090px;
+            top: 300px;
+        }
+        /* Jilin */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-10 {
+            left: 1410px;
+            top: 250px;
+        }
+        /* Tianjin */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-11 {
+            left: 1250px;
+            top: 350px;
+        }
+        /* Shanxi */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-12 {
+            left: 1160px;
+            top: 390px;
+        }
+        /* Tibet */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-13 {
+            left: 700px;
+            top: 500px;
+        }
+        /* Guangdong */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-14 {
+            left: 1170px;
+            top: 670px;
+        }
+        /* Hainan */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-15 {
+            left: 1110px;
+            top: 750px;
+        }
+        /* Yunnan */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-16 {
+            left: 970px;
+            top: 650px;
+        }
+        /* Guizhou */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-17 {
+            left: 1055px;
+            top: 610px;
+        }
+        /* Hunan */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-18 {
+            left: 1145px;
+            top: 590px;
+        }
+        /* Shanghai */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-19 {
+            left: 1350px;
+            top: 529px;
+        }
+        /* Anhui */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-20 {
+            left: 1250px;
+            top: 500px;
+        }
+        /* Zhejiang */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-21 {
+            left: 1300px;
+            top: 560px;
+        }
+        /* Jiangsu */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-22 {
+            left: 1300px;
+            top: 480px;
+        }
+        /* Sichuan */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-23 {
+            left: 990px;
+            top: 530px;
+        }
+        /* Chongqing */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-24 {
+            left: 1070px;
+            top: 540px;
+        }
+        /* Fujian */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-25 {
+            left: 1270px;
+            top: 620px;
+        }
+        /* Jiangxi */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-26 {
+            left: 1215px;
+            top: 590px;
+        }
+        /* Shaanxi */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-27 {
+            left: 1090px;
+            top: 460px;
+        }
+        /* Gansu */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-28 {
+            left: 1020px;
+            top: 440px;
+        }
+        /* Ningxiahui */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-29 {
+            left: 1040px;
+            top: 400px;
+        }
+        /* Guangxi */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-30 {
+            left: 1090px;
+            top: 670px;
+        }
+        /* Shandong */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-31 {
+            left: 1245px;
+            top: 410px;
+        }
+        /* HongKong */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-32 {
+            left: 1200px;
+            top: 700px;
+        }
+        /* Macau */
+        #ideavivat-thaibiz-china-map-main-style .marker-botton-33 {
+            left: 1150px;
+            top: 700px;
+        }
+
+    </style>
+
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="js/pad.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // อันแรกมา ก็ให้แสดงเลยทันที
+            $(".marker-content-1").fadeIn();
+            $(".marker-botton").click(function() {
+                // ซ่อนอันก่อน ก่อน
+                $(".marker-dot-content").fadeOut();
+                var content = $(this).data('content');
+
+                // แสดงอันที่เลือก
+                $(content).fadeIn();
+                return false;
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+
+    <section id="ideavivat-thaibiz-china-map-main-style">
+        <img src="images/Map_City_Details-1.png" alt="Background China Map">
+        <a class="marker-botton marker-botton-1" data-content=".marker-content-1" href="#">Beijing</a>
+        <a class="marker-botton marker-botton-2" data-content=".marker-content-2" href="#">Henan</a>
+        <a class="marker-botton marker-botton-3" data-content=".marker-content-3" href="#">Heilongjiang</a>
+        <a class="marker-botton marker-botton-4" data-content=".marker-content-4" href="#">Hubei</a>
+        <a class="marker-botton marker-botton-5" data-content=".marker-content-5" href="#">Xinjiang</a>
+        <a class="marker-botton marker-botton-6" data-content=".marker-content-6" href="#">Hebei</a>
+        <a class="marker-botton marker-botton-7" data-content=".marker-content-7" href="#">Qinghai</a>
+        <a class="marker-botton marker-botton-8" data-content=".marker-content-8" href="#">Liaoning</a>
+        <a class="marker-botton marker-botton-9" data-content=".marker-content-9" href="#">InnerMongolia</a>
+        <a class="marker-botton marker-botton-10" data-content=".marker-content-10" href="#">Jilin</a>
+        <a class="marker-botton marker-botton-11" data-content=".marker-content-11" href="#">Tianjin</a>
+        <a class="marker-botton marker-botton-12" data-content=".marker-content-12" href="#">Shanxi</a>
+        <a class="marker-botton marker-botton-13" data-content=".marker-content-13" href="#">Tibet</a>
+        <a class="marker-botton marker-botton-14" data-content=".marker-content-14" href="#">Guangdong</a>
+        <a class="marker-botton marker-botton-15" data-content=".marker-content-15" href="#">Hainan</a>
+        <a class="marker-botton marker-botton-16" data-content=".marker-content-16" href="#">Yunnan</a>
+        <a class="marker-botton marker-botton-17" data-content=".marker-content-17" href="#">Guizhou</a>
+        <a class="marker-botton marker-botton-18" data-content=".marker-content-18" href="#">Hunan</a>
+        <a class="marker-botton marker-botton-19" data-content=".marker-content-19" href="#">Shanghai</a>
+        <a class="marker-botton marker-botton-20" data-content=".marker-content-20" href="#">Anhui</a>
+        <a class="marker-botton marker-botton-21" data-content=".marker-content-21" href="#">Zhejiang</a>
+        <a class="marker-botton marker-botton-22" data-content=".marker-content-22" href="#">Jiangsu</a>
+        <a class="marker-botton marker-botton-23" data-content=".marker-content-23" href="#">Sichuan</a>
+        <a class="marker-botton marker-botton-24" data-content=".marker-content-24" href="#">Chongqing</a>
+        <a class="marker-botton marker-botton-25" data-content=".marker-content-25" href="#">Fujian</a>
+        <a class="marker-botton marker-botton-26" data-content=".marker-content-26" href="#">Jiangxi</a>
+        <a class="marker-botton marker-botton-27" data-content=".marker-content-27" href="#">Shaanxi</a>
+        <a class="marker-botton marker-botton-28" data-content=".marker-content-28" href="#">Gansu</a>
+        <a class="marker-botton marker-botton-29" data-content=".marker-content-29" href="#">Ningxiahui</a>
+        <a class="marker-botton marker-botton-30" data-content=".marker-content-30" href="#">Guangxi</a>
+        <a class="marker-botton marker-botton-31" data-content=".marker-content-31" href="#">Shandong</a>
+        <a class="marker-botton marker-botton-32" data-content=".marker-content-32" href="#">HongKong</a>
+        <a class="marker-botton marker-botton-33" data-content=".marker-content-33" href="#">Macau</a>
+
+        <div class="marker-dot-content marker-content-1">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>กรุงปักกิ่ง</h2>
+            <img src="images/province/01_Beijing.png" alt="Beijing">
+            <div class="stick-bar"></div>
+            <p>เป็นเมืองหลวงของประเทศจีน เป็นศูนย์กลางทั้งด้านการปกครอง เศรษฐกิจ การคมนาคม และวัฒนธรรมของประเทศ โดยมีพื้นที่ทั้งหมด 16,410.54 ตารางกิโลเมตร มีชนชาติฮั่นเป็นประชากรส่วนใหญ่ มีประวัติศาสตร์ยาวนานกว่า 3,000 ปี</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-2">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเหอหนาน</h2>
+            <img src="images/province/02_Henan.png" alt="Henan">
+            <div class="stick-bar"></div>
+            <p>มีที่ตั้งอยู่บริเวณตอนกลางส่วนล่างของแม่น้ำเหลือง  เนื่องจากพื้นที่ส่วนใหญ่อยู่บริเวณแม่น้ำเหลืองตอนล่างจึงได้รับการขนานนามว่า "เหอหนาน" ซึ่งแปลเป็นภาษาจีนว่า "แม่น้ำทางตอนใต้" เป็นแหล่งทรัพยากรแร่ธาตุที่อุดมสมบูรณ์ที่สุดแห่งหนึ่งในโลก มีพื้นที่ทั้งหมด 167,000 ตารางกิโลเมตร</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-3">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเฮยหลงเจียง</h2>
+            <img src="images/province/03_Heilongjiang.png" alt="Heilongjiang">
+            <div class="stick-bar"></div>
+            <p>เป็น 1 ใน 3 มณฑลที่ตั้งอยู่ทางภาคตะวันออกเฉียงเหนือ และตั้งอยู่ตอนเหนือสุดของประเทศจีน ทิศเหนือและทิศตะวันออกติดประเทศรัสเซีย (แนวพรมแดนยาว 3,045 กิโลเมตร) เป็นประตูสู่ “ยูเรเซีย” </p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-4">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลหูเป่ย</h2>
+            <img src="images/province/04_Hubei.png" alt="Hubei">
+            <div class="stick-bar"></div>
+            <p>มณฑลหูเป่ยมีชื่อย่อว่า เอ้อ(鄂) ตั้งอยู่ในภาคกลางของประเทศจีน มีทรัพยากรแร่ธาตุอุดมสมบูรณ์ มีการค้นพบทรัพยากรธรรมชาติถึง 136 ชนิด มีประชากรทั้งหมด 59.88 ล้านคน</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-5">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตปกครองตนเองซินเจียง</h2>
+            <img src="images/province/05_Xinjiang.png" alt="Xinjiang">
+            <div class="stick-bar"></div>
+            <p>เขตการปกครองตนเองชนชาติอุยกูร์ซินเจียงตั้งอยู่ทางทิศตะวันตกเฉียงเหนือของประเทศจีน เป็นเขตที่มีพื้นที่ใหญ่ที่สุดในประเทศ วัฒนธรรมท้องถิ่นของซินเจียงยังมีภาษาและวรรณคดีของชาวอุยเกอร์ ที่เป็นภาษาที่ยังคงใช้อยู่จนถึงทุกวันนี้ ซึ่งภาษาท้องถิ่นนี้ยังปรากฏในบทกวี ดนตรีและการเต้นรำของชนชาติดังกล่าวในปัจจุบัน</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-6">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเหอเป่ย</h2>
+            <img src="images/province/06_Hebei.png" alt="Hebei">
+            <div class="stick-bar"></div>
+            <p>มณฑลเหอเป่ยตั้งอยู่ทางทิศเหนือของประเทศจีน ชื่อย่อคือ “จี้” ได้รับการขนานนามว่า “มณฑลที่อยู่เหนือแม่น้ำเหลือง”</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-7">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลชิงไห่</h2>
+            <img src="images/province/07_Qinghai.png" alt="Qinghai">
+            <div class="stick-bar"></div>
+            <p>มณฑลชิงไห่ หรือมีความหมายเป็นภาษาไทยว่า "ทะเลสีเขียว" เป็นชื่อที่ตั้งขึ้นตามชื่อทะเลสาบน้ำเค็มฉาร์ฮั่น (Qarhan) ซึ่งเป็นทะเลสาบน้ำเค็มที่ใหญ่ที่สุดในประเทศจีนและใหญ่ที่สุดในโลก ภูมิประเทศโดยทั่วไปเป็นภูเขาและหุบเขา มีที่ราบแอ่งกะทะอยู่ตอนกลางของมณฑลคือ ที่ราบแอ่งกะทะไฉต๋ามู่ (Qaidamu)</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-8">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเหลียวหนิง</h2>
+            <img src="images/province/08_Liaoning.png" alt="Liaoning">
+            <div class="stick-bar"></div>
+            <p>มณฑลเหลียวหนิงมีชื่อย่อว่า "เหลียว" ตั้งอยู่ทางทิศตะวันออกเฉียงเหนือของประเทศจีน มีแหล่งทรัพยากรพลังงาน ได้แก่ ปิโตรเลียม ก๊าซธรรมชาติ ถ่านหิน และยูเรเนียม </p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-9">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตปกครองตนเองมองโกเลียใน</h2>
+            <img src="images/province/09_InnerMongolia.png" alt="InnerMongolia">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ทางตอนเหนือของประเทศจีน มีพื้นที่ทั้งหมด 1,183,000 ตารางกิโลเมตร โดยคิดเป็นสัดส่วนร้อยละ 12.3 ของพื้นที่รวมทั้งประเทศ ตั้งอยู่ห่างจากมหาสมุทร พื้นที่ส่วนใหญ่เป็นที่ราบสูงกว้างใหญ่</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-10">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลจี๋หลิน</h2>
+            <img src="images/province/10_Jilin.png" alt="Jilin">
+            <div class="stick-bar"></div>
+            <p>ชื่อของมณฑลจี๋หลินมีความหมายว่า "เมืองอันอุมดมสมบูรณ์ด้วยป่าไม้" ตั้งอยู่ทางภาคตะวันออกเฉียงเหนือของประเทศจีน ได้รับการสมญานามว่า “พื้นที่ดินดำ” มีทรัพยากรดินที่อุดมสมบูรณ์ด้วยแร่ธาตุ เหมาะสำหรับการเพาะปลูก</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-11">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>นครเทียนจิน</h2>
+            <img src="images/province/11_Tianjin.png" alt="Tianjin">
+            <div class="stick-bar"></div>
+            <p>นครเทียนจินตั้งอยู่บริเวณตะวันออกเฉียงเหนือของที่ราบภาคเหนือของจีน เทียนจินห่างจากปักกิ่ง 120 กิโลเมตร ตั้งอยู่บริเวณสองฝั่งของแม่น้ำไห่เหอ ซึ่งเป็นแม่น้ำที่ใหญ่ที่สุดของประเทศจีนทางตอนเหนือ มีสาขากว่า 300 สายแต่ละสายมีความยาวกว่า 10 กิโลเมตร</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-12">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลซานซี</h2>
+            <img src="images/province/12_Shanxi.png" alt="Shanxi">
+            <div class="stick-bar"></div>
+            <p>มณฑลซานซีตั้งอยู่ทางทิศเหนือของประเทศจีน มีพื้นที่ทั้งหมด156,579 ตร.กม. คิดเป็น 1.6 % ของพื้นที่ทั้งหมด มีภูมิประเทศที่หลากหลาย ประกอบด้วยภูเขา เนินเขา ที่ราบสูง และที่ราบลุ่มโดยมีพื้นที่ที่เป็นภูเขามากกว่า 80 % ของพื้นที่ทั้งหมด</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-13">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตปกครองตนเองทิเบต</h2>
+            <img src="images/province/13_Tibet.png" alt="Tibet">
+            <div class="stick-bar"></div>
+            <p>เขตปกครองตนเองทิเบตตั้งอยู่ทางทิศตะวันตกเฉียงใต้ของประเทศจีน เขตการปกครองตนเองทิเบตตั้งอยู่บนที่ราบสูงชิงไห่-ทิเบต ซึ่งพื้นที่ดังกล่าวได้รับการขนานนามว่าเป็น “หลังคาโลก” เขตปกครองตนเองทิเบตมีภูมิอากาศที่หลากหลายและได้รับการขนานนามว่า "เมืองที่ไม่มีฤดูกาล แต่ฤดูกาลทั้งสี่จะเกิดขึ้นได้ในวันเดียว”</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-14">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลกวางตุ้ง</h2>
+            <img src="images/province/14_Guangdong.png" alt="Guangdong">
+            <div class="stick-bar"></div>
+            <p>มณฑลกวางตุ้งหรือมณฑลกว่างตง (广东省) มีชื่อย่อว่า เยี่ยว์ (粤, Yue) ตั้งอยู่ทางแนวชายฝั่งทะเลตอนใต้ของจีน มีพื้นที่ 179,812.7 ตร.กม. มีขนาดใหญ่เป็นอันดับที่ 15 ของประเทศจีน ในปี 2555 มีประชากร 105.94 ล้านคน เป็นมณฑลที่มีประชากรมากเป็นอันดับ 1 ของประเทศจีน</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-15">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลไห่หนาน</h2>
+            <img src="images/province/15_Hainan.png" alt="Hainan">
+            <div class="stick-bar"></div>
+            <p>มณฑลไห่หนานหรือมณฑลไหหลำ (海南省) ตั้งอยู่ทางตอนใต้สุดของจีนล้อมรอบด้วยทะเลจีนใต้ เดิมเคยเป็นส่วนหนึ่งของมณฑลกวางตุ้ง ซึ่งต่อมาได้ยกระดับขึ้นเป็นมณฑลและประกาศเป็นเขตเศรษฐกิจพิเศษในปี 2531 และเป็นเขตเศรษฐกิจพิเศษของจีนที่มีขนาดพื้นที่ใหญ่ที่สุด</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-16">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลยูนนาน</h2>
+            <img src="images/province/16_Yunnan.png" alt="Yunnan">
+            <div class="stick-bar"></div>
+            <p>มณฑลยูนนาน หรือที่คนจีนเรียกสั้น ๆ ว่า “เตียน” (Dian) ซึ่งเป็นชื่อของทะเสสาบในนครคุนหมิง ตั้งอยู่ทางภาคตะวันตกเฉียงใต้ของจีน เป็นมณฑลเขตชั้นในที่ไม่มีทางออกทะเล</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-17">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลกุ้ยโจว</h2>
+            <img src="images/province/17_Guizhou.png" alt="Guizhou">
+            <div class="stick-bar"></div>
+            <p>มณฑลกุ้ยโจวตั้งอยู่ทางภาคตะวันตกเฉียงใต้ของสาธารณรัฐประชาชนจีน เป็นมณฑลเขตชั้นในที่ไม่มีทางออกทะเล อยู่ที่ราบสูงหยูนกุ้ย (Yungui) ได้ชื่อว่า เป็นแหล่งไฟฟ้าพลังน้ำของประเทศ เนื่องจากแม่น้ำอู่เจียง (Wujiang) ไหลผ่านทั่วทั้งมณฑล </p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-18">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลหูหนาน</h2>
+            <img src="images/province/18_Hunan.png" alt="Hunan">
+            <div class="stick-bar"></div>
+            <p>มณฑลหูหนาน (Hunan) หรือที่เรียกกันว่า “เซียง” (Xiang) ตั้งอยู่ทางตอนกลางของภาคใต้ของสาธารณรัฐประชาชนจีน มีปริมาณน้ำจืดมากเป็นอันดับ 2 ของจีน เนื่องจากมีทะเลสาบต้งถิง (Dongting Lake) ซึ่งเป็นทะเลสาบน้ำจืดที่ใหญ่เป็นอันดับ 2 ของจีน ซึ่งเป็นที่มาของชื่อมณฑล “หูหนาน” ที่แปลว่า “ทิศใต้ของทะเลสาบ” และได้สมญานามว่าเป็น “แหล่งผลิตข้าวและปลาน้ำจืดรายใหญ่ของจีน”</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-19">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>นครเซี่ยงไฮ้</h2>
+            <img src="images/province/19_Shanghai.png" alt="Shanghai">
+            <div class="stick-bar"></div>
+            <p>เซี่ยงไฮ้มีพื้นที่ประมาณ 6,340.5 ตร.กม. คิดเป็นสัดส่วนร้อยละ 0.06 ของพื้นที่ทั้งประเทศ ผลจากการที่ประเทศตะวันตก เข้ามาเช่าพื้นที่หลายแห่งทำให้ เซี่ยงไฮ้กลายเป็นเมืองท่าการค้านานาชาติที่สำคัญ อีกทั้งอาคารและสถาปัตยกรรมต่างๆ ของนครเซี่ยงไฮ้ได้รับอิทธิพลจากรูปแบบตะวันตก และมีลวดลายสวยงามตามแบบยุโรป จนได้รับการขนานนามว่าเป็น “นครปารีสแห่งตะวันออก” ในปัจจุบัน</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-20">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลอานฮุย</h2>
+            <img src="images/province/20_Anhui.png" alt="Anhui">
+            <div class="stick-bar"></div>
+            <p>มณฑลอานฮุยตั้งอยู่บนพื้นที่เขตทิศตะวันออกของประเทศจีน มีพื้นที่รวมทั้งสิ้น 139,600 ตารางกิโลเมตร มีจำนวนประชากรประมาณ 69.020 ล้านคน โดยได้ชื่อว่าเป็นมณฑลที่มีความยากจนที่สุดในภาคตะวันออกของจีน ด้วยเหตุนี้จึงมีแรงงานไหลออกจากมณฑลอานฮุยไปทำงานที่มณฑลใกล้เคียง เช่น งานก่อสร้าง และงานที่ใช้แรงงานอื่นๆ เป็นต้น</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-21">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเจ้อเจียง</h2>
+            <img src="images/province/21_Zhejiang.png" alt="Zhejiang">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ทางชายฝั่งทะเลทางตะวันออกเฉียงใต้ของจีนและทางใต้ของสามเหลี่ยมแม่น้ำฉางเจียง มีพื้นที่ทั้งหมด 101,800 ตารางกิโลเมตร มณฑลเจ้อเจียงมีชายฝั่งทะเลที่ยาวที่สุดในประเทศ 6,486 กิโลเมตร และเป็นมณฑลที่มีเกาะมากที่สุดในประเทศ มีพื้นที่สามารถเพาะพันธุ์สัตว์ทะเลน้ำตื้นได้กว่า 400 ตารางกิโลเมตร</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-22">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเจียงซู</h2>
+            <img src="images/province/22_Jiangsu.png" alt="Jiangsu">
+            <div class="stick-bar"></div>
+            <p>มณฑลเจียงซู ตั้งอยู่ทางชายฝั่งทะเลทางตะวันออกของจีน มีพื้นที่ทั้งหมด 102,600 ตารางกิโลเมตร มีขนาดเท่ากับร้อยละ 1.06 ของประเทศจีน ขึ้นชื่อว่าเป็นดินแดนแห่งข้าวและปลา หมายถึงเป็นดินแดนที่มีความอุดมสมบูรณ์ ทั้งยังมีชื่อเสียงในการผลิตน้ำมันพืช ฝ้าย ผ้าไหม และการประมง มณฑลเจียงซูมีพื้นที่แหล่งน้ำจืดมากเป็นอันดับหนึ่งของประเทศจีน</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-23">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเสฉวน</h2>
+            <img src="images/province/23_Sichuan.png" alt="Sichuan">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ทางตะวันตกเฉียงใต้ของจีน มีพื้นที่ทั้งสิ้น 485,000 ตารางกิโลเมตร เป็นหนึ่งในพื้นที่เกษตรกรรมที่สำคัญของจีนในด้านตะวันตกของมณฑล ซึ่งเป็นที่สูงมีลักษณะอากาศเป็นแบบที่ราบสูง (plateau climate) ความชื้นและปริมาณน้ำฝนต่ำ อากาศเย็นในฤดูหนาว</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-24">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>นครฉงชิ่ง</h2>
+            <img src="images/province/24_Chongqing.png" alt="Chongqing">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ทางตะวันตกเฉียงใต้ของประเทศ มีพื้นที่ทั้งสิ้น 82,402 ตารางกิโลเมตร ลักษณะเป็นพื้นที่สูง ภูมิประเทศเป็นเนินเขาและภูเขาเป็นหลัก สำหรับที่ตั้งของมหานครฉงชิ่ง จัดเป็นบริเวณสำคัญสำหรับรัฐบาลจีนในการดำเนินแผนการ “Great West Development”</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-25">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลฝูเจี้ยน</h2>
+            <img src="images/province/25_Fujian.png" alt="Fujian">
+            <div class="stick-bar"></div>
+            <p>มณฑลฝูเจี้ยน ตั้งอยู่ทางทิศตะวันออกเฉียงใต้ของประเทศจีน ตรงข้ามเกาะไต้หวัน มีพื้นที่ใหญ่เป็นอันดับ 23 ของประเทศ ในช่วงไม่กี่ปีที่ผ่านมา มณฑลฝูเจี้ยนได้ก้าวสู่การเป็นเขตพัฒนาเศรษฐกิจที่สำคัญ โดยมีกุญแจสำคัญอยู่ที่ไต้หวัน ซึ่งตั้งอยู่ห่างจากมณฑลฝูเจี้ยนเพียง 125-160 กม.</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-26">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลเจียงซี</h2>
+            <img src="images/province/26_Jiangxi.png" alt="Jiangxi">
+            <div class="stick-bar"></div>
+            <p>มีเนื้อที่ทั้งหมด 166,947 ตร.กม. มีทะเลสาบผอ-หยาง (鄱阳湖) เป็นจุดศูนย์รวมทางระบบนิเวศวิทยาแหล่งใหญ่ที่สุดของมณฑล ที่สำคัญยังเป็นแหล่งแร่ทองแดงที่ใหญ่สุดในเอเชีย รวมทั้งเป็นแหล่งหลอมแร่ทองแดงที่ใหญ่สุดในประเทศ</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-27">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลส่านซี</h2>
+            <img src="images/province/27_Shaanxi.png" alt="Shaanxi">
+            <div class="stick-bar"></div>
+            <p>ชื่อย่อมณฑล “ส่าน” หรือ “ฉิน” ตั้งอยู่ภาคตะวันตกเฉียงเหนือของประเทศจีน ปี 2559 มณฑลส่านซีมีประชากรทั้งหมด 38.12 ล้านคน  มณฑลส่านซียังเป็นจุด “ต้า ตี้ หยวน เตี่ยน” หรือ จุดศูนย์กลางแผ่นดินของประเทศจีนซึ่งอยู่ที่ตำบลหย่งเล่อ อำเภอจิ่งหยัง เมืองเสียนหยาง</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-28">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลกานซู</h2>
+            <img src="images/province/28_Gansu.png" alt="Gansu">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ทางภาคตะวันตกเฉียงเหนือของประเทศจีน มีพื้นที่ประมาณ 454,000 ตารางกิโลเมตร สถิติจากสำนักงานสำรวจประชากรมณฑลกานซู ปี 2560 มณฑลกานซูมีประชากรรวม 26.09 ล้านคน แบ่งเป็นชนชาติฮั่น ร้อยละ 90.6 และชนกลุ่มน้อยอื่นๆ ร้อยละ 9.4</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-29">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตปกครองตนเองหนิงเซี่ยหุย</h2>
+            <img src="images/province/29_Ningxiahui.png" alt="Ningxiahui">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ในภาคตะวันตกเฉียงเหนือของจีน ตอนบนของแม่น้ำฮวงโห พื้นที่ของเขตฯ หนิงเซี่ยหุยมีลักษณะแคบและยาว มีขนาดพื้นที่ 66,400 ตารางกิโลเมตร มีแสงแดดเฉลี่ยต่อปี 3,000 ชั่วโมง ซึ่งถือว่าเป็นหนึ่งในพื้นที่ที่ได้รับแสงอาทิตย์มากที่สุดในประเทศจีน และมีพายุทรายมาก จึงสามารถนำพลังงานแสงอาทิตย์และพลังงานลมมาใช้ในอุตสาหกรรมผลิตไฟฟ้า</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-30">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตปกครองตนเองกว่างซีจ้วง</h2>
+            <img src="images/province/30_Guangxi.png" alt="Guangxi">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่ทางทิศตะวันตกเฉียงใต้ของประเทศจีน ใหญ่เป็นอันดับที่ 9 ของประเทศจีน (คิดเป็นสัดส่วน 2.5% ของทั้งประเทศ) เป็นแหล่งผลิตผลิตภัณฑ์ทางทะเลที่สำคัญแห่งหนึ่งของประเทศจีน นอกจากนี้ กว่างซียังเป็นแหล่งผลิตน้ำตาลที่สำคัญของจีน โดยมีผลผลิตประมาณ 1 ใน 3 ของทั้งประเทศ</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-31">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>มณฑลซานตง</h2>
+            <img src="images/province/31_Shandong.png" alt="Shandong">
+            <div class="stick-bar"></div>
+            <p>มณฑลซานตงเป็นมณฑลชายฝั่งทะเลทางภาคตะวันออกของประเทศจีน จากภูมิประเทศที่เป็นคาบสมุทร ได้แยกอ่าวป่อไห่และทะเลเหลืองออกจากกัน มีพื้นที่ทั้งหมด 156,700 ตารางกิโลเมตร คิดเป็นร้อยละ 1.6 ของพื้นที่ทั้งประเทศ</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-32">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตบริหารพิเศษฮ่องกง</h2>
+            <img src="images/province/32_HongKong.png" alt="HongKong">
+            <div class="stick-bar"></div>
+            <p>อยู่ทางตะวันออกเฉียงใต้ของจีน ประกอบด้วยเกาะฮ่องกง คาบสมุทรเกาลูน และดินแดนที่เรียกว่า New Territories (ซึ่งเป็นส่วนที่ติดกับชายแดนจีน) รวมถึงเกาะเล็ก ๆ อีก 235 เกาะ โดยเกาะที่ใหญ่ที่สุด คือ เกาะลันเตา</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+        <div class="marker-dot-content marker-content-33">
+            <h1>ข้อมูลรายมณฑล</h1>
+            <h2>เขตบริหารพิเศษมาเก๊า</h2>
+            <img src="images/province/33_Macau.png" alt="Macau">
+            <div class="stick-bar"></div>
+            <p>ตั้งอยู่บริเวณชายฝั่งทางตะวันออกของจีน และอยู่ทางตะวันตกของพื้นที่สามเหลี่ยมปากแม่น้ำเพิร์ล (PRD) โดยมีพรมแดนติดกับมณฑลกวางตุ้ง มาเก๊ามีพื้นที่ 29.9 ตารางกิโลเมตร</p>
+        
+            <ul>
+                <li class="active"><span class="front-number">01</span><a href="#"> ข้อมูลพื้นฐาน</a></li>
+                <li><span class="front-number">02</span><a href="#"> เมืองสำคัญ / นครเศรษฐกิจ</a></li>
+                <li><span class="front-number">03</span><a href="#"> คมนาคม / โลจิสติกส์</a></li>
+                <li><span class="front-number">04</span><a href="#"> เศรษฐกิจ</a></li>
+            </ul>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
